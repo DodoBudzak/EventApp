@@ -17,7 +17,7 @@ export default function CalendarScreen() {
       duration: 1000,
       useNativeDriver: false,
     }).start(() => {
-      // Reset the value after the animation completes
+    
       Animated.timing(value, {
         toValue: 0,
         duration: 0,
@@ -37,7 +37,7 @@ export default function CalendarScreen() {
 
     loop.start();
 
-    return () => loop.stop(); // Stop the loop when the component unmounts
+    return () => loop.stop(); 
   }, [value]);
 
   const interpolateRotation = value.interpolate({
@@ -56,7 +56,7 @@ export default function CalendarScreen() {
           style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: 'red' }}
         />
         <TouchableOpacity onPress={move}>
-          <Text>Press me</Text>
+          <Text>Skus</Text>
         </TouchableOpacity>
       </Animated.View>
     </View>

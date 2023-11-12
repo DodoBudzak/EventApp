@@ -173,7 +173,7 @@ export default function App() {
   return(
       <LoginInStack.Navigator screenOptions={{headerShown:false}}>
       
-        <LoginInStack.Screen name='SignUp' component={CalendarScreen}/>  
+        <LoginInStack.Screen name='SignUp' component={SignInScreen}/>  
         <LoginInStack.Screen name='Login' component={LoginScreen}/> 
         <LoginInStack.Screen name='HomeBase' component={TabGroup}/>  
         

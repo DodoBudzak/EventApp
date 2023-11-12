@@ -188,7 +188,7 @@ const HomeScreen = ({ navigation }) => {
 
         <View style={styles.hot}>
 
-        <Card1 eventData={eventData[1]} />
+        <Card1 eventData={eventData[1]} navigation={navigation}   />
          </View>
 
              
@@ -217,7 +217,7 @@ const HomeScreen = ({ navigation }) => {
             )}>
 
         <View style={styles.rendered}>
-            <Text style={{margin:10}} variant='headlineSmall'> Akcie v lokalite</Text>
+            <Text style={{margin:10}} variant='headlineSmall'>Horúca ponuka</Text>
 
         
               <View style={styles.nearby}>
@@ -226,9 +226,9 @@ const HomeScreen = ({ navigation }) => {
                       ))}
               </View>
            
-              <Text style={{margin:10}} variant='headlineSmall'> Top akcie mesiaca</Text>
+              <Text style={{margin:10}} variant='headlineSmall'> Party v okolí</Text>
 
-            <ScrollView  showsHorizontalScrollIndicator={false} horizontal={true}>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
 
               <View style={styles.nearby}>
                     {eventData.map((eventItem) => (
@@ -237,7 +237,7 @@ const HomeScreen = ({ navigation }) => {
               </View>
             </ScrollView>
             
-             <Text style={{margin:10}} variant='headlineSmall'> Top aasdkcie mesiaca</Text>
+             <Text style={{margin:10}} variant='headlineSmall'> Top akcie mesiaca</Text>
 
             <ScrollView  showsHorizontalScrollIndicator={false} horizontal={true}>
 
@@ -250,7 +250,7 @@ const HomeScreen = ({ navigation }) => {
             </ScrollView>
 
 
-             <Text style={{margin:10}} variant='headlineSmall'> Top aasdkcie mesiaca</Text>
+             <Text style={{margin:10}} variant='headlineSmall'> Akcie v : Košice</Text>
 
             <ScrollView  showsHorizontalScrollIndicator={false} horizontal={true}>
               <View style={styles.nearby}>

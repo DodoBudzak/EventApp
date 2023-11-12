@@ -179,27 +179,27 @@ const SearchScreen = ({ navigation }) => {
       <Chip
         selected={true}
         style={styles.chipItem}
-        icon="information"
+        
         
         onPress={() => handleChipPress('chip1')}
       >
-        Kokot
+        Košice
       </Chip>
       <Chip
         selected={chipsSelected.chip2}
         style={styles.chipItem}
-        icon="information"
+        
         onPress={() => handleChipPress('chip2')}
       >
-        Example Chip
+        Pre Deti
       </Chip>
       <Chip
         selected={chipsSelected.chip3}
         style={styles.chipItem}
-        icon="information"
+        
         onPress={() => handleChipPress('chip3')}
       >
-        Example Chip
+        Divadlo
       </Chip>
       <Chip
         selected={chipsSelected.chip4}
@@ -207,12 +207,12 @@ const SearchScreen = ({ navigation }) => {
         icon="information"
         onPress={() => handleChipPress('chip4')}
       >
-        Example Chip
+        Párty
       </Chip>
       <Chip
         selected={chipsSelected.chip5}
         style={styles.chipItem}
-        icon="information"
+        
         onPress={() => handleChipPress('chip5')}
       >
         Example Chip

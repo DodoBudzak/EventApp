@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, StyleSheet,Image, FlatList, ScrollView ,Animated} from 'react-native';
+import { View, StyleSheet,Image, FlatList, ScrollView ,Animated, TouchableOpacity} from 'react-native';
 import { Divider, Text ,} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -13,12 +13,12 @@ export default function UserScreen() {
     },
     {
       icon: 'phone',
-      label: 'Phone',
+      label: 'Telefone čislo',
       value: '123-456-7890',
     },
     {
       icon: 'account',
-      label: 'Username',
+      label: 'Užívateľské meno',
       value: 'dodo123',
     },
     {
@@ -33,7 +33,7 @@ export default function UserScreen() {
     },
     {
       icon: 'account',
-      label: 'Username',
+      label: 'Užívateľské meno',
       value: 'dodo123',
     }, {
       icon: 'email',
@@ -47,7 +47,7 @@ export default function UserScreen() {
     },
     {
       icon: 'account',
-      label: 'Username',
+      label: 'Užívateľské meno',
       value: 'dodo123',
     },
     {
@@ -62,7 +62,7 @@ export default function UserScreen() {
     },
     {
       icon: 'account',
-      label: 'Username',
+      label: 'Užívateľské meno',
       value: 'dodo123',
     },
   ];
@@ -84,6 +84,7 @@ export default function UserScreen() {
     });
 
     return (
+      <TouchableOpacity>
       <View style={infoStyles.detailInfoContainer}>
         <View style={infoStyles.content}>
           <View>
@@ -98,11 +99,12 @@ export default function UserScreen() {
           </View>
         </View>
       </View>
+      </TouchableOpacity>
     );
   };
 
-  const Header_Max_Height = 240;
-  const Header_Min_Height = 180;
+  const Header_Max_Height = 260;
+  const Header_Min_Height = 190;
   const Scroll_Distance = Header_Max_Height - Header_Min_Height;
 
   
@@ -120,11 +122,7 @@ export default function UserScreen() {
               outputRange: [Header_Max_Height, Header_Min_Height],
               extrapolate: 'clamp',
             }),
-            backgroundColor: scrollOffsetY.interpolate({
-              inputRange: [0, Scroll_Distance],
-              outputRange: ['#181D31', '#678983'],
-              extrapolate: 'clamp',
-            }),
+           
           },
         ]}
       >
@@ -138,7 +136,7 @@ export default function UserScreen() {
 
           <View style={styles.TopC2}>
             <Image source={require('../../glogo.png')} style={styles.image} />
-            <Text variant='headlineMedium' style={{ alignSelf: 'center',color:"white" }}>Josko Budsak</Text>
+            <Text variant='headlineMedium' style={{ alignSelf: 'center',color:"white" }}>Jozef Bača</Text>
           </View>
 
           <View style={styles.TopC1}></View>
@@ -155,8 +153,10 @@ export default function UserScreen() {
         scrollEventThrottle={16}
       >
         
-
         <View style={styles.c2}>
+          
+        <Text variant='titleLarge' style={{marginBottom:10}}>Nastavenia</Text>
+         <Divider/>
         {testFile.map((item, index) => (
   <DetailInfo key={index} icon={item.icon} label={item.label} value={item.value} />
 ))}
@@ -172,12 +172,14 @@ const styles = StyleSheet.create({
   },
   c1: {
     backgroundColor: '#305ce3',
-    flex: 1.2,
+    flex:0.9,
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
   },
   c2: {
-    flex: 2,
+    flex:2,
+  paddingTop:250,
+   marginRight:20
   },
   TopC1: {
     marginTop:20,

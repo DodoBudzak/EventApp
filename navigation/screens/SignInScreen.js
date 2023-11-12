@@ -89,7 +89,7 @@ const SignInScreen = ({navigation}) => {
     Registrovať Sa
   </Button>
 
-            <Button style={{marginTop:5,height:50,justifyContent:"center"}}  onPress={handlen}>Prihlásiť sa</Button>
+            <Button style={{marginTop:5,height:50,justifyContent:"center"}}  onPress={handleLogin}>Prihlásiť sa</Button>
 
         </View>
         

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "577657735730",
+    "project_id": "fir-databasa-3404e",
+    "storage_bucket": "fir-databasa-3404e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577657735730:android:a72fbf94c4096d8a078a2b",
+        "android_client_info": {
+          "package_name": "com.mestov1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577657735730-r38rrec14gt3cjesdvp26pa3polnclmn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mestov1",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "577657735730-r65l195mepv8gt1s6b7si0uv8qpmorg2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVaZk6-1kD2rNm9spfuTLpWEVtAg9w5mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577657735730-r65l195mepv8gt1s6b7si0uv8qpmorg2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

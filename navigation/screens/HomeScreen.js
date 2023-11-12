@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
       
         flex:1,
       
-      backgroundColor: 'blue',
+      backgroundColor: 'rgba(0, 100, 255, 0.9)',
       borderBottomRightRadius:50,
       borderBottomLeftRadius:50,
       flexDirection:"column",

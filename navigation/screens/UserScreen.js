@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, StyleSheet,Image, FlatList, ScrollView ,Animated, TouchableOpacity} from 'react-native';
 import { Divider, Text ,} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 
 export default function UserScreen() {
@@ -67,6 +68,32 @@ export default function UserScreen() {
     },
   ];
 
+  const [user, setUser] = useState("Žiadny Uživateľ")
+  const signOut = async () => {
+    try {
+      await GoogleSignin.signOut();
+      setUser("Žiadny Uživateľ")
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const currentUser = await GoogleSignin.getCurrentUser();
+        console.log(currentUser?.user?.name);
+        setUser(currentUser.user.name)
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+       
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
   const DetailInfo = ({ icon, label, value }) => {
     const infoStyles = StyleSheet.create({
       detailInfoContainer: {
@@ -130,13 +157,14 @@ export default function UserScreen() {
           <View style={styles.TopC1}>
             <MaterialCommunityIcons name="arrow-left" color="white" size={26}/>
             <Text></Text>
+            <TouchableOpacity onPress={signOut}>
             <MaterialCommunityIcons name="account-settings" color="white" size={26}/>
-            
+            </TouchableOpacity>
           </View>
 
           <View style={styles.TopC2}>
             <Image source={require('../../glogo.png')} style={styles.image} />
-            <Text variant='headlineMedium' style={{ alignSelf: 'center',color:"white" }}>Jozef Bača</Text>
+            <Text variant='headlineMedium' style={{ alignSelf: 'center',color:"white" }}>{user}</Text>
           </View>
 
           <View style={styles.TopC1}></View>
@@ -171,7 +199,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   c1: {
-    backgroundColor: '#305ce3',
+    backgroundColor: 'rgba(0, 100, 255, 1)',
     flex:0.9,
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,

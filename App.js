@@ -105,7 +105,7 @@ export default function App() {
     return(
       <Tab.Navigator
       initialRouteName='Home'
-      activeColor='#fAAAAa'
+      activeColor='rgba(0, 100, 255, 0.9)'
       shifting={true}
       headerShown={false}
     

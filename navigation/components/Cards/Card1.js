@@ -51,6 +51,7 @@ const Card1 = ({ eventData }) => {
 
   const DoNavigate =() =>{
     navigation.navigate("CardDetail",{eventItem:eventData})
+   
   }
   return (
     <View style={cardStyles.container}>

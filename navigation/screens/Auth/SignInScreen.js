@@ -3,7 +3,7 @@ import { View, StyleSheet, Image } from 'react-native';
 import auth from "@react-native-firebase/auth";
 import { useNavigation } from '@react-navigation/native'; 
 import { Text,TextInput ,Button,useTheme} from "react-native-paper"
-import {test,onGoogleButtonPress} from "../../App.js"
+import {test,onGoogleButtonPress} from "../../../App.js"
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 
@@ -41,14 +41,6 @@ const SignInScreen = ({navigation}) => {
     navigation.navigate("HomeBase")
   }
 
-  const signOut = async () => {
-    try {
-      await GoogleSignin.signOut();
-      console.log("odlhaseno")
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const handleSignOut = () =>{
     signOut()
@@ -89,7 +81,7 @@ const SignInScreen = ({navigation}) => {
     Registrovať Sa
   </Button>
 
-            <Button style={{marginTop:5,height:50,justifyContent:"center"}}  onPress={handleLogin}>Prihlásiť sa</Button>
+            <Button style={{marginTop:5,height:50,justifyContent:"center"}}  onPress={handlen}>Prihlásiť sa</Button>
 
         </View>
         

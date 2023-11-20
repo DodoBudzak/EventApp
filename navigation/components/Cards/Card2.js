@@ -6,7 +6,7 @@ const Card2 = ( {eventData} ) => {
     const cardStyles = StyleSheet.create({
       container: {
         padding: 10,
-        width: 350,
+        width: 400,
         height: 150,
         margin: 10,
         marginRight: 50,
@@ -14,35 +14,36 @@ const Card2 = ( {eventData} ) => {
         borderRadius: 20,
         overflow: 'hidden',
         backgroundColor: 'white',
-        elevation: 2,
+        
       },
       imageBox: {
         flex: 2,
       },
       text: {
         flex: 3,
+        marginTop:-10,
         padding: 10,
       },
       image: {
-        flex: 1,
+        flex: 0.9,
         aspectRatio: 1,
         borderRadius: 20,
       },
     });
-  console.log(eventData)
+
     return (
       <View style={cardStyles.container}>
         <View style={cardStyles.imageBox}>
           <Image source={eventData.imageSource} style={cardStyles.image} />
         </View>
         <View style={cardStyles.text}>
-          <Text variant="titleLarge" style={{ margin: 1 }}>
+          <Text variant="titleLarge" style={{ marginTop:0 }}>
             {eventData.eventTitle}
           </Text>
-          <Text variant="titleMedium" style={{ marginTop: 5 }}>
+          <Text variant="titleMedium" style={{ marginTop:10 }}>
             {eventData.date}
           </Text>
-          <Text variant="titleSmall" style={{ margin: 2 }}>
+          <Text variant="titleSmall" style={{ marginTop:10 }}>
             {eventData.location}, {eventData.city}
           </Text>
         </View>

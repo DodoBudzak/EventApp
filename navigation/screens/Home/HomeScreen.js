@@ -1,19 +1,21 @@
 import React, { useState,useRef } from 'react';
-import { Animated,View, StyleSheet,Image,FlatList ,ScrollView} from 'react-native';
-import { Button,Divider,Text,Searchbar,Chip ,useTheme,elevation} from 'react-native-paper';
+import { Animated,View,Text, StyleSheet,Image,FlatList ,ScrollView} from 'react-native';
+import { Button,Divider,Searchbar,Chip ,useTheme,elevation} from 'react-native-paper';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import firestore from '@react-native-firebase/firestore';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Import the icon library
 
-import Card1 from '../components/Card1';
-import Card2 from '../components/Card2';
-import Card3 from '../components/Card3';
 
-const Header_Max_Height = 400;
+import Card1 from '../../components/Cards/Card1';
+import Card2 from '../../components/Cards/Card2';
+import Card3 from '../../components/Cards/Card3';
+
+const Header_Max_Height = 90;
 const Header_Min_Height = 0;
 const Scroll_Distance = Header_Max_Height - Header_Min_Height;
 
 const HomeScreen = ({ navigation }) => {
+ 
   const eventData = [
     {
       id:1,
@@ -108,7 +110,7 @@ const HomeScreen = ({ navigation }) => {
   const getData = async() =>{
     const mestaCollection =  await firestore().collection("Eventy").get()
     mestaCollection.forEach(item=>{setEventy([...eventy,item.data()])})
-    console.log(eventy)
+    
     //console.log(mestaCollection.data())
   }
 
@@ -121,14 +123,6 @@ const HomeScreen = ({ navigation }) => {
       console.error(error);
     }
   };
-
-  const renderItem = ({ item }) => {
-    return <Card2  />;
-  };
-
- 
-  
-  
 
   
   
@@ -150,7 +144,7 @@ const HomeScreen = ({ navigation }) => {
         
       <Animated.View
         style={[
-          styles.header,
+          styles.top,
           {
             height: animatedHeaderHeight,
             //backgroundColor: animatedHeaderColor,
@@ -158,53 +152,90 @@ const HomeScreen = ({ navigation }) => {
           },
         ]}>
 
-        <Animated.View
-        style={[
-            styles.top,{
-                
-            }
-        ]}
-        >
 
                 <View style={styles.upperText}>
-                    <Text variant='headlineSmall' style={{color:"white"}}>Search</Text>
-                    <View style={{flexDirection:"row",color:"white"}}>
-                        
-                        <MaterialCommunityIcons name='calendar' color="white"  size={26} />
-                        <Text  style={{color:"white"}} variant='titleSmall'>Search</Text>
 
-                    </View>
+                <MaterialCommunityIcons name='home' style={styles.topIcon} size={26} />
 
+                        <Searchbar
+                      placeholder="Search"
+                      onChangeText={onChangeSearch}
+                      value={searchQuery}
+                      style={{width:"90%"}}
+                      />
+                    
+                    
                 </View>
-
-                    <Searchbar
-                    placeholder="Search"
-                    onChangeText={onChangeSearch}
-                    value={searchQuery}
-                    style={{margin:10}}
-                    />
 
         </Animated.View>
 
-        <View style={styles.hot}>
 
-        <Card1 eventData={eventData[1]} navigation={navigation}   />
-         </View>
-
-             
-          
-      </Animated.View>
-      
     );
   };
- 
 
-  
- 
+
+
+  ///styling
+  const styles = StyleSheet.create({
+    container: {
+      
+      backgroundColor: 'white',
+    },
+   
+    top: {
+   
+      backgroundColor: theme.colors.primary,
+    },
+    upperText:{
+        flexDirection:"row",
+     
+        margin:10,
+        marginTop:20
+    },
+    topIcon:{
+      margin:10,
+
+     },
+    hot: {
+     flex:1
+    
+    },
+   
+   
+    rendered:{
+      marginTop:10,
+      marginBottom:-10,
+        backgroundColor:"white"
+    },
+    topicHeader:{
+      marginLeft:20,
+      marginTop:0,
+      fontFamily:"Roboto",
+      fontWeight:"bold",
+      color:"black",
+      fontSize:25
+
+    },
+    nearby:{
+      
+    },
+    bottomScroll:{
+flexDirection:"row"
+    },
+    eventL1: {
+      height: 200,
+      backgroundColor: 'orange',
+    },
+  });
+
+  /////final return
   return (
     <View style={styles.container}>
 
         <DynamicHeader style={styles.dynamicHeader} value={scrollOffsetY} />
+
+       
+
         <ScrollView
         
             scrollEventThrottle={5}
@@ -217,7 +248,15 @@ const HomeScreen = ({ navigation }) => {
             )}>
 
         <View style={styles.rendered}>
-            <Text style={{margin:10}} variant='headlineSmall'>Horúca ponuka</Text>
+
+        <View style={styles.hot}>
+
+        <Card1 eventData={eventData[1]} navigation={navigation}   />
+
+        </View>
+
+
+            <Text style={styles.topicHeader}  variant='headlineSmall'>Horúca ponuka</Text>
 
         
               <View style={styles.nearby}>
@@ -226,7 +265,7 @@ const HomeScreen = ({ navigation }) => {
                       ))}
               </View>
            
-              <Text style={{margin:10}} variant='headlineSmall'> Party v okolí</Text>
+              <Text style={styles.topicHeader} variant='headlineSmall'> Party v okolí</Text>
 
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
 
@@ -235,13 +274,14 @@ const HomeScreen = ({ navigation }) => {
                   <Card2  eventData={eventItem} />
                     ))}
               </View>
+
             </ScrollView>
             
              <Text style={{margin:10}} variant='headlineSmall'> Top akcie mesiaca</Text>
 
             <ScrollView  showsHorizontalScrollIndicator={false} horizontal={true}>
 
-              <View style={styles.nearby}>
+              <View style={styles.bottomScroll}>
               {eventData.map((eventItem) => (
                   <Card3  eventData={eventItem} />
                     ))}
@@ -250,10 +290,10 @@ const HomeScreen = ({ navigation }) => {
             </ScrollView>
 
 
-             <Text style={{margin:10}} variant='headlineSmall'> Akcie v : Košice</Text>
+             <Text style={styles.topicHeader} variant='headlineSmall'> Akcie v : Košice</Text>
 
             <ScrollView  showsHorizontalScrollIndicator={false} horizontal={true}>
-              <View style={styles.nearby}>
+              <View style={styles.bottomScroll}>
               {eventData.map((eventItem) => (
                   <Card3  eventData={eventItem} />
                     ))}
@@ -268,50 +308,7 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-    container: {
-      
-      backgroundColor: 'white',
-    },
-    dynamicHeader:{
-        backgroundColor:"red"
-    },
-    top: {
-      
-        flex:1,
-      
-      backgroundColor: 'rgba(0, 100, 255, 0.9)',
-      borderBottomRightRadius:50,
-      borderBottomLeftRadius:50,
-      flexDirection:"column",
-     marginBottom:-50,
-      
-      
-    },
-    upperText:{
-        flexDirection:"row",
-        justifyContent:"space-between",
-        margin:10,
-        marginTop:20
-    },
-    hot: {
-     flex:1
-    
-    },
-    header:{
-        
-    },
-    rendered:{
-        backgroundColor:"white"
-    },
-    nearby:{
-      flexDirection:"row"
-    },
-    eventL1: {
-      height: 200,
-      backgroundColor: 'orange',
-    },
-  });
+
   
 
 export default HomeScreen;

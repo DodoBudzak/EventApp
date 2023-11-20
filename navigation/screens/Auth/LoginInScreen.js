@@ -3,7 +3,7 @@ import { View, StyleSheet, Image } from 'react-native';
 import auth from "@react-native-firebase/auth";
 import { useNavigation } from '@react-navigation/native'; 
 import { Text, TextInput, Button } from "react-native-paper";
-import { onGoogleButtonPress } from "../../App.js";
+import { onGoogleButtonPress } from "../../../App.js";
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 const LoginScreen = ({route,navigation}) => {

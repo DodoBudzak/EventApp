@@ -4,8 +4,8 @@ import { Button,Divider,Text,Searchbar,Chip ,useTheme,elevation} from 'react-nat
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import firestore from '@react-native-firebase/firestore';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Import the icon library
-import Card1 from '../components/Card1';
-import Card2 from '../components/Card2';
+import Card1 from '../components/Cards/Card1';
+import Card2 from '../components/Cards/Card2';
 
 
 export default function CalendarScreen() {

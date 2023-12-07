@@ -3,93 +3,91 @@ import { View, StyleSheet,Image,FlatList ,ScrollView} from 'react-native';
 import { Button,Divider,Text,Searchbar,Chip ,Card,Avatar} from 'react-native-paper';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import Card1 from '../../components/Cards/Card3';
-import searchBox from '../../components/searchBox';
+
 import { Context } from '../../../App';
 
 const SearchScreen = ({ navigation }) => {
   const eventData = [
     {
-      id:1,
+      id: 1,
       date: 'Pondelok, 30. októbra o 16:00',
       eventTitle: 'Salašnícky Jarmok',
       location: 'Námestie',
       city: 'Mesto Spišská Belá',
-      imageSource: require('../../images/e1.png'),
+      imageSource: require('../../../images/e1.png'),
     },
     {
-      id:2,
+      id: 2,
       date: 'Utorok, 31. októbra o 17:30',
       eventTitle: 'Hudobný Festival',
       location: 'Hlavné námestie',
       city: 'Bratislava',
-      imageSource: require('../../images/e2.png'),
+      imageSource: require('../../../images/e2.png'),
     },
     {
-      id:3,
+      id: 3,
       date: 'Streda, 1. novembra o 14:00',
       eventTitle: 'Krčma na rohu',
       location: 'Historická ulica',
       city: 'Košice',
-      imageSource: require('../../images/e3.png'),
+      imageSource: require('../../../images/e3.png'),
     },
     {
-      id:4,
+      id: 4,
       date: 'Štvrtok, 2. novembra o 19:45',
       eventTitle: 'Divadelná premiéra',
       location: 'Mestské divadlo',
       city: 'Žilina',
-      imageSource: require('../../images/e4.png'),
+      imageSource: require('../../../images/e4.png'),
     },
     {
-      id:5,
+      id: 5,
       date: 'Piatok, 3. novembra o 20:15',
       eventTitle: 'Rockový koncert',
       location: 'Mestská hala',
       city: 'Prešov',
-      imageSource: require('../../images/e5.png'),
+      imageSource: require('../../../images/e5.png'),
     },
     {
-      id:6,
+      id: 6,
       date: 'Sobota, 4. novembra o 10:30',
       eventTitle: 'Ranný trh',
       location: 'Trhovisko',
       city: 'Trnava',
-      imageSource: require('../../images/e6.png'),
+      imageSource: require('../../../images/e6.png'),
     },
     {
-      id:7,
+      id: 7,
       date: 'Nedeľa, 5. novembra o 15:00',
       eventTitle: 'Umelci na námestí',
       location: 'Hlavné námestie',
-      city: 'Banská Bystrica', 
-      imageSource: require('../../images/e7.png'),
+      city: 'Banská Bystrica',
+      imageSource: require('../../../images/e7.png'),
     },
     {
-      id:8,
+      id: 8,
       date: 'Pondelok, 6. novembra o 16:00',
       eventTitle: 'Salašnícky Jarmok',
       location: 'Námestie',
       city: 'Mesto Spišská Belá',
-      imageSource: require('../../images/e1.png'),
+      imageSource: require('../../../images/e1.png'),
     },
     {
-      id:9,
+      id: 9,
       date: 'Utorok, 7. novembra o 17:30',
       eventTitle: 'Hudobný Festival',
       location: 'Hlavné námestie',
       city: 'Bratislava',
-      imageSource: require('../../images/e1.png'),
+      imageSource: require('../../../images/e1.png'),
     },
     {
-      id:10,
+      id: 10,
       date: 'Streda, 8. novembra o 14:00',
       eventTitle: 'Krčma na rohu',
       location: 'Historická ulica',
       city: 'Košice',
-      imageSource: require('../../disko.png'),
+      imageSource: require('../../../images/e1.png'),
     },
-    
-        
   ];
 
   const [currentUser,setUser] = useState()
@@ -129,7 +127,7 @@ const SearchScreen = ({ navigation }) => {
   }
   const Item = ({ id, title }) => (
     <View style={styles.item}>
-       <Image source={require("../../disko.png")} style={styles.image} />
+       <Image source={require("../../../disko.png")} style={styles.image} />
     <View style={styles.itemDetails}>
       <Text style={styles.id}>{id}</Text>
       <Text style={styles.title}>{title}</Text>
@@ -224,7 +222,6 @@ const SearchScreen = ({ navigation }) => {
       <View style={styles.chipList}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
        <Chip  icon="home" style={{margin:10}}  onPress={() => navigation.navigate('FilterModal')}><Text variant='titleMedium'>Example Chip</Text></Chip>
-       <Chip icon="home" style={{margin:10}}  onPress={() => navigation.navigate('FilterModal')}>Example Chip</Chip>
        <Chip icon="home" style={{margin:10}}  onPress={() => navigation.navigate('FilterModal')}>Example Chip</Chip>
        
        <Chip icon="home" style={{margin:10}}  onPress={() => navigation.navigate('FilterModal')}>Example Chip</Chip>

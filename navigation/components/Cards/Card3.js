@@ -1,42 +1,40 @@
 import React, { useState } from 'react';
-import { Animated,View, StyleSheet,Image,FlatList ,ScrollView} from 'react-native';
+import { Animated,View, StyleSheet,Image,FlatList ,ScrollView, TouchableOpacity} from 'react-native';
 import { Button,Divider,Text,Searchbar,Chip ,useTheme,elevation} from 'react-native-paper';
-const Card3 = ({ eventData }) => {
+const Card3 = ({ navigation,eventData }) => {
   const cardStyles3 = StyleSheet.create({
     container: {
       padding: 10,
-      flex: 1,
       width: 170,
-      margin: 10,
+      margin: 3,
       marginRight: 0,
-      flexDirection: 'row',
-      borderRadius: 30,
-      overflow: 'hidden',
-      backgroundColor: 'white',
-      flexWrap: 'wrap',
       flexDirection: 'column',
+      borderRadius: 30,
+      backgroundColor: 'white',
+      
     },
     imageBox: {
-      flex: 0.1,
+      flex: 1, // Adjust the flex to allocate more space for the image
     },
     text: {
-      flex: 1,
-      padding: 0,
+      flex: 1, // Adjust the flex to allocate less space for the text
+      marginTop:60
     },
     image: {
-      width: 150,
+      width: '100%', // Make sure the image takes 100% width of its container
       height: 150,
       borderRadius: 20,
     },
   });
 
   return (
+    
     <View style={cardStyles3.container}>
       <View style={cardStyles3.imageBox}>
         <Image source={eventData.imageSource} style={cardStyles3.image} />
       </View>
       <View style={cardStyles3.text}>
-        <Text variant="titleLarge" style={{ margin: 1 }}>
+        <Text variant="titleLarge" style={{ margin: 0 }}>
           {eventData.eventTitle}
         </Text>
         <Text variant="titleSmall" style={{ margin: 2 }}>
@@ -44,6 +42,7 @@ const Card3 = ({ eventData }) => {
         </Text>
       </View>
     </View>
+
   );
 };
 

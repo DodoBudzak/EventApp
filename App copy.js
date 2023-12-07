@@ -19,9 +19,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
-
-
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Import the icon library
 import Icon from 'react-native-paper';
 import SignInScreen from './navigation/screens/Auth/SignInScreen';
@@ -37,7 +34,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { PaperProvider } from 'react-native-paper';
 import CardDetail from './navigation/screens/Home/CardDetail';
 import FilterModal from './navigation/screens/Search/FilterModal';
-
+import Header from './navigation/components/header';
 
 
 const Stack = createNativeStackNavigator();
@@ -46,7 +43,6 @@ const UserStack = createNativeStackNavigator();
 const LoginInStack = createNativeStackNavigator();
 const SearchStack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
-
 
 
 export const Context = React.createContext()
@@ -72,9 +68,51 @@ export async function onGoogleButtonPress() {
 
 
 
-
-  
-
+const theme = {
+ 
+    "colors": {
+      "primary": "rgb(63, 85, 192)",
+      "onPrimary": "rgb(255, 255, 255)",
+      "primaryContainer": "rgb(222, 225, 255)",
+      "onPrimaryContainer": "rgb(0, 17, 89)",
+      "secondary": "rgb(0, 101, 139)",
+      "onSecondary": "rgb(255, 255, 255)",
+      "secondaryContainer": "rgb(196, 231, 255)",
+      "onSecondaryContainer": "rgb(0, 30, 45)",
+      "tertiary": "rgb(154, 70, 31)",
+      "onTertiary": "rgb(255, 255, 255)",
+      "tertiaryContainer": "rgb(255, 219, 205)",
+      "onTertiaryContainer": "rgb(54, 15, 0)",
+      "error": "rgb(186, 26, 26)",
+      "onError": "rgb(255, 255, 255)",
+      "errorContainer": "rgb(255, 218, 214)",
+      "onErrorContainer": "rgb(65, 0, 2)",
+      "background": "rgb(254, 251, 255)",
+      "onBackground": "rgb(27, 27, 31)",
+      "surface": "rgb(254, 251, 255)",
+      "onSurface": "rgb(27, 27, 31)",
+      "surfaceVariant": "rgb(227, 225, 236)",
+      "onSurfaceVariant": "rgb(70, 70, 79)",
+      "outline": "rgb(118, 118, 128)",
+      "outlineVariant": "rgb(198, 197, 208)",
+      "shadow": "rgb(0, 0, 0)",
+      "scrim": "rgb(0, 0, 0)",
+      "inverseSurface": "rgb(48, 48, 52)",
+      "inverseOnSurface": "rgb(243, 240, 244)",
+      "inversePrimary": "rgb(186, 195, 255)",
+      "elevation": {
+        "level0": "transparent",
+        "level1": "rgb(244, 243, 252)",
+        "level2": "rgb(239, 238, 250)",
+        "level3": "rgb(233, 233, 248)",
+        "level4": "rgb(231, 231, 247)",
+        "level5": "rgb(227, 228, 246)"
+      },
+      "surfaceDisabled": "rgba(27, 27, 31, 0.12)",
+      "onSurfaceDisabled": "rgba(27, 27, 31, 0.38)",
+      "backdrop": "rgba(47, 48, 56, 0.4)"
+    }
+  }
 
 export default function App() {
 
@@ -114,6 +152,64 @@ export default function App() {
 
 
 
+  //layoutik
+  const TabGroup = ({navigation})  =>{
+    return(
+      <Tab.Navigator
+      initialRouteName='Home'
+      activeColor='rgba(0, 100, 255, 0.9)'
+      shifting={true}
+      headerShown={false}
+    
+    >
+      <Tab.Screen
+        name='Home'
+        component={CardStackGroup}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name='home' color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='Search'
+        component={SearchStackGroup}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name='magnify' color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='Favorites'
+        component={FauvoritesScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name='heart' color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='Kalendar'
+        component={CalendarScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name='calendar' color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='User'
+        component={UserScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name='account' color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+)
+  }
 
 //homepage stack
 const CardStackGroup =({navigation}) =>{
@@ -158,7 +254,32 @@ const SearchStackGroup = ({navigation}) =>{
         
         const [chipsSelected, setChipsSelected] = useState({});
       
+        
+        const handleChipPress = (chipId) => {
+          setChipsSelected((prevChipsSelected) => ({
+            ...prevChipsSelected,
+            [chipId]: !prevChipsSelected[chipId],
+          }));
+          
+        };
+        
       
+        
+        const getSelectedFilters = () => {
+          const selectedFilters = {};
+        
+          chipData.forEach((chip) => {
+            if (chipsSelected[chip.chipId]) {
+              if (!selectedFilters[chip.type]) {
+                selectedFilters[chip.type] = [];
+              }
+              selectedFilters[chip.type].push(chip.text);
+            }
+          });
+          console.log(selectedFilters)
+          return selectedFilters;
+        };
+  
 
 
   return(
@@ -198,78 +319,17 @@ const SearchStackGroup = ({navigation}) =>{
   }
 
 
-//top tap hihi 
-
-//layoutik
-const TabGroup = ({navigation})  =>{
-  return(
-    <Tab.Navigator
-    initialRouteName='Home'
-    activeColor='rgba(0, 100, 255, 0.9)'
-    shifting={true}
-    headerShown={false}
-  
-  >
-    <Tab.Screen
-      name='Home'
-      component={CardStackGroup}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name='home' color={color} size={26} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name='Search'
-      component={SearchStackGroup}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name='magnify' color={color} size={26} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name='Favorites'
-      component={FauvoritesScreen}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name='heart' color={color} size={26} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name='Kalendar'
-      component={CalendarScreen}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name='calendar' color={color} size={26} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name='User'
-      component={UserScreen}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name='account' color={color} size={26} />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-)
-}
-
 
 
   return (
     
-  
+    <PaperProvider theme={theme}>
         <NavigationContainer>
          
             <LoginInScreenGroup/>   
           
         </NavigationContainer>
-   
+    </PaperProvider>
 
   );
 }

@@ -29,7 +29,7 @@ const LoginScreen = ({route,navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Image source={require("../../logoT.png")} style={styles.image} />
+        <Image source={require("../../../logoT.png")} style={styles.image} />
       </View>
       <View style={styles.mid}>
         <Text style={{ marginBottom: 20 }} variant='headlineMedium'>Prihlásenie</Text>

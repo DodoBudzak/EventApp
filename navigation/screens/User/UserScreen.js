@@ -163,7 +163,7 @@ export default function UserScreen() {
           </View>
 
           <View style={styles.TopC2}>
-            <Image source={require('../../glogo.png')} style={styles.image} />
+            <Image source={require('../../../glogo.png')} style={styles.image} />
             <Text variant='headlineMedium' style={{ alignSelf: 'center',color:"white" }}>{user}</Text>
           </View>
 
